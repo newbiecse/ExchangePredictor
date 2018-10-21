@@ -7,11 +7,11 @@ using System.Collections.Generic;
 namespace ExchangePredictor.Test.Services
 {
     [TestFixture]
-    public class PredictorTest
+    public class AppTest
     {
         private readonly Predictor _predictor;
 
-        public PredictorTest()
+        public AppTest()
         {
             _predictor = new Predictor();
         }

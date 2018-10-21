@@ -38,7 +38,7 @@ namespace ExchangePredictor
             return result;
         }
 
-        private async Task GetCurrenciesAsync()
+        public async Task<List<string>> GetCurrenciesAsync()
         {
             using (var client = new HttpClient())
             {
@@ -47,11 +47,11 @@ namespace ExchangePredictor
                 var response = await client.GetStringAsync(url);
 
                 JObject obj = JObject.Parse(response);
-                _currencies = obj.Properties().Select(p => p.Name).ToList();
+                return obj.Properties().Select(p => p.Name).ToList();
             }
         }
 
-        private async Task<bool> ValidateCurrencyAsync(string currency)
+        public async Task<bool> ValidateCurrencyAsync(string currency)
         {
             if (string.IsNullOrWhiteSpace(currency) || currency.Length != 3)
             {
@@ -60,14 +60,34 @@ namespace ExchangePredictor
 
             if (!_currencies.Any())
             {
-                await GetCurrenciesAsync();
+                _currencies = await GetCurrenciesAsync();
             }
 
             return _currencies.Any(c => c == currency.ToUpper());
         }
 
-        private async Task<MonthlyRate> GetRateAsync(DateTime day, string fromCurrency, string toCurrency)
+        public async Task<MonthlyRate> GetRateAsync(DateTime day, string fromCurrency, string toCurrency)
         {
+            if (day == null)
+            {
+                throw new ArgumentNullException(nameof(day));
+            }
+
+            if (!await ValidateCurrencyAsync(fromCurrency))
+            {
+                throw new Exception($"{fromCurrency} is invalid currency.");
+            }
+
+            if (!await ValidateCurrencyAsync(toCurrency))
+            {
+                throw new Exception($"{toCurrency} is invalid currency.");
+            }
+
+            if (string.Equals(fromCurrency, toCurrency, StringComparison.OrdinalIgnoreCase))
+            {
+                throw new Exception($"From Currency and To Currency should be different.");
+            }
+
             var dateFormatted = day.ToString("yyyy-MM-dd");
 
             using (var client = new HttpClient())
@@ -80,7 +100,7 @@ namespace ExchangePredictor
             }
         }
 
-        private async Task<IEnumerable<MonthlyRate>> GetRatesAsync(string fromCurrency, string toCurrency)
+        public async Task<IEnumerable<MonthlyRate>> GetRatesAsync(string fromCurrency, string toCurrency)
         {
             var from = new DateTime(2016, 1, 15);
             var days = new List<DateTime>();
@@ -126,6 +146,12 @@ namespace ExchangePredictor
             if (!await ValidateCurrencyAsync(toCurrency))
             {
                 Console.WriteLine($"To Currency: {fromCurrency} currency is invalid.");
+                return;
+            }
+
+            if (string.Equals(fromCurrency, toCurrency, StringComparison.OrdinalIgnoreCase))
+            {
+                Console.WriteLine($"From Currency and To Currency should be different.");
                 return;
             }
 
