@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2015
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExchangePredictor", "ExchangePredictor\ExchangePredictor.csproj", "{B7A729D9-9213-4699-AD43-942E78C48F7A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExchangePredictor.Test", "ExchangePredictor.Test\ExchangePredictor.Test.csproj", "{C2DC7CF0-A7C9-4686-9335-9C93C0B0CB8D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B7A729D9-9213-4699-AD43-942E78C48F7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7A729D9-9213-4699-AD43-942E78C48F7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7A729D9-9213-4699-AD43-942E78C48F7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7A729D9-9213-4699-AD43-942E78C48F7A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2DC7CF0-A7C9-4686-9335-9C93C0B0CB8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2DC7CF0-A7C9-4686-9335-9C93C0B0CB8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2DC7CF0-A7C9-4686-9335-9C93C0B0CB8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2DC7CF0-A7C9-4686-9335-9C93C0B0CB8D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B719C560-B20A-4800-9B2E-F19BA1FF1E29}
+	EndGlobalSection
+EndGlobal
