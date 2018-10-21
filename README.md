@@ -11,3 +11,6 @@
 ## Results:
 * Unit test result: 
   ![test-result](https://image.ibb.co/cvBpWL/test-result.png)
+
+* Predict result:
+  ![result](https://image.ibb.co/eSb1d0/result.png)
